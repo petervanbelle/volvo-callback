@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Volvo login – doorsturen</title>
+<style>body { font-family: system-ui, sans-serif; max-width: 600px; margin: 60px auto; padding: 0 16px; }</style>
+</head>
+<body>
+<p>Doorsturen naar het dashboard op de Raspberry Pi…</p>
+<p id="mis" hidden>Lukt het doorsturen niet? Zit je wel op je thuisnetwerk?</p>
+<script>
+  // Stuurt de login-code van Volvo (in de adresbalk) door naar Node-RED op de Pi.
+  // Er wordt hier niets bewaard of verzonden naar een andere server.
+  var DOEL = 'http://192.168.1.58:1880/volvo/callback';
+  if (location.search) {
+    location.replace(DOEL + location.search);
+    setTimeout(function () { document.getElementById('mis').hidden = false; }, 4000);
+  }
+</script>
+</body>
+</html>
